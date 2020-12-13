@@ -61,7 +61,6 @@ module.exports = {
         title: songInfo.videoDetails.title,
         url: songInfo.videoDetails.video_url,
         description: selectedVideo.description,
-        thumbnail: selectedVideo.thumbnails.default.url,
         image: selectedVideo.thumbnails.high.url,
       };
 
@@ -97,7 +96,6 @@ module.exports = {
                 song.messageAuthor,
                 song.authorPhoto
             )
-            .setThumbnail(song.thumbnail)
             .setImage(song.image)
             .setTimestamp();
 
@@ -130,7 +128,6 @@ module.exports = {
         song.messageAuthor,
         song.authorPhoto
       )
-      .setThumbnail(song.thumbnail)
       .setImage(song.image)
       .setTimestamp();
 
