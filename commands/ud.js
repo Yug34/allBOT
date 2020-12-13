@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-
 module.exports = {
   name: "ud",
   description: "Urban Dictionary!",
