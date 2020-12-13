@@ -21,6 +21,7 @@
     "ffmpeg-static": "^4.2.7",
     "fluent-ffmpeg": "^2.1.2",
     "xmlhttprequest": "^1.8.0",
+    "youtube-search": "^1.1.4",
     "ytdl-core": "^4.1.4"
   }
 }
