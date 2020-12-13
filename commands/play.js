@@ -1,4 +1,11 @@
+const ytSearch = require("youtube-search");
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const ytdl = require("ytdl-core");
+
+const options = {
+  maxResults: 10,
+  key: "AIzaSyDHKq-FL_t5Ldc4sX4fT7XqkY5PvhWi-KE",
+};
 
 module.exports = {
   name: "play",
@@ -6,6 +13,32 @@ module.exports = {
   async execute(message) {
     try {
       const args = message.content.split(" ");
+      args.shift(); //remove the primarycommand
+      let query = "";
+      args.forEach((word) => {
+        query += word.toString();
+        query += " ";
+      });
+      query = query.slice(0, -1);
+      console.log(query);
+
+      let selectedVideo;
+      await new Promise((resolve, reject) => {
+        ytSearch(query, options, function (err, results) {
+          if(err) {
+            console.log(err);
+            return;
+          }
+          for (let i = 0; i < results.length; i++) {
+            if (results[i].kind === "youtube#video") {
+              selectedVideo = results[i];
+              break;
+            }
+          }
+          resolve();
+        });
+      });
+
       const queue = message.client.queue;
       const serverQueue = message.client.queue.get(message.guild.id);
 
@@ -21,7 +54,9 @@ module.exports = {
         );
       }
 
-      const songInfo = await ytdl.getInfo(args[1]);
+      console.log(selectedVideo);
+
+      const songInfo = await ytdl.getInfo(selectedVideo.link);
       const song = {
         title: songInfo.videoDetails.title,
         url: songInfo.videoDetails.video_url,
