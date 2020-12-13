@@ -1,6 +1,6 @@
 module.exports = {
     name: "sayd",
-    description: "Urban Dictionary!",
+    description: "Say something back and delete the original message!",
     execute(message) {
         let splitCommand = message.content.substr(1).split(" ");
         let arguments = splitCommand.slice(1);
