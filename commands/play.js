@@ -24,7 +24,7 @@ module.exports = {
       const songInfo = await ytdl.getInfo(args[1]);
       const song = {
         title: songInfo.videoDetails.title,
-        url: songInfo.videoDetails.video_url
+        url: songInfo.videoDetails.video_url,
       };
 
       if (!serverQueue) {
@@ -34,7 +34,7 @@ module.exports = {
           connection: null,
           songs: [],
           volume: 5,
-          playing: true
+          playing: true,
         };
 
         queue.set(message.guild.id, queueContruct);
@@ -79,8 +79,8 @@ module.exports = {
         serverQueue.songs.shift();
         this.play(message, serverQueue.songs[0]);
       })
-      .on("error", error => console.error(error));
+      .on("error", (error) => console.error(error));
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
     serverQueue.textChannel.send(`Start playing: **${song.title}**`);
-  }
+  },
 };
