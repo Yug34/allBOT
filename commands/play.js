@@ -1,3 +1,4 @@
+const Discord = require("discord.js");
 const ytSearch = require("youtube-search");
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const ytdl = require("ytdl-core");
@@ -20,12 +21,11 @@ module.exports = {
         query += " ";
       });
       query = query.slice(0, -1);
-      console.log(query);
 
       let selectedVideo;
       await new Promise((resolve, reject) => {
         ytSearch(query, options, function (err, results) {
-          if(err) {
+          if (err) {
             console.log(err);
             return;
           }
@@ -54,12 +54,15 @@ module.exports = {
         );
       }
 
-      console.log(selectedVideo);
-
       const songInfo = await ytdl.getInfo(selectedVideo.link);
       const song = {
+        messageAuthor: message.author.username,
+        authorPhoto: message.author.displayAvatarURL(),
         title: songInfo.videoDetails.title,
         url: songInfo.videoDetails.video_url,
+        description: selectedVideo.description,
+        thumbnail: selectedVideo.thumbnails.default.url,
+        image: selectedVideo.thumbnails.high.url,
       };
 
       if (!serverQueue) {
@@ -77,8 +80,7 @@ module.exports = {
         queueContruct.songs.push(song);
 
         try {
-          var connection = await voiceChannel.join();
-          queueContruct.connection = connection;
+          queueContruct.connection = await voiceChannel.join();
           this.play(message, queueContruct.songs[0]);
         } catch (err) {
           console.log(err);
@@ -86,10 +88,21 @@ module.exports = {
           return message.channel.send(err);
         }
       } else {
+        const songEmbed = new Discord.MessageEmbed()
+            .setColor("#00ff00")
+            .setTitle(song.title.toString().replace(/&quot;/g, '\\"'))
+            .setDescription(song.description)
+            .setURL(song.url)
+            .setAuthor(
+                song.messageAuthor,
+                song.authorPhoto
+            )
+            .setThumbnail(song.thumbnail)
+            .setImage(song.image)
+            .setTimestamp();
+
         serverQueue.songs.push(song);
-        return message.channel.send(
-          `${song.title} has been added to the queue!`
-        );
+        return message.channel.send(songEmbed);
       }
     } catch (error) {
       console.log(error);
@@ -108,6 +121,19 @@ module.exports = {
       return;
     }
 
+    const songEmbed = new Discord.MessageEmbed()
+      .setColor("#00ff00")
+      .setTitle(song.title.toString().replace(/&quot;/g, '\\"'))
+      .setDescription(song.description)
+      .setURL(song.url)
+      .setAuthor(
+        song.messageAuthor,
+        song.authorPhoto
+      )
+      .setThumbnail(song.thumbnail)
+      .setImage(song.image)
+      .setTimestamp();
+
     const dispatcher = serverQueue.connection
       .play(ytdl(song.url))
       .on("finish", () => {
@@ -116,6 +142,6 @@ module.exports = {
       })
       .on("error", (error) => console.error(error));
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-    serverQueue.textChannel.send(`Start playing: **${song.title}**`);
+    serverQueue.textChannel.send(songEmbed);
   },
 };
