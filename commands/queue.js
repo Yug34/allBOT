@@ -7,7 +7,7 @@ module.exports = {
     if (serverQueue === undefined) {
       return message.channel.send("Song queue is empty");
     } else {
-      let songList = "```";
+      let songList = "```css\n";
       for (let i = 0; i < serverQueue.songs.length; i++) {
         songList += `[${i + 1}]: ${
           serverQueue.songs[i].title
