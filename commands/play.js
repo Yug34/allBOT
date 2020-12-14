@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const ytSearch = require("youtube-search");
-const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const ytdl = require("ytdl-core");
 
 const options = {
@@ -56,6 +55,7 @@ module.exports = {
 
       const songInfo = await ytdl.getInfo(selectedVideo.link);
       const song = {
+        duration: songInfo.videoDetails.lengthSeconds,
         messageAuthor: message.author.username,
         authorPhoto: message.author.displayAvatarURL(),
         title: songInfo.videoDetails.title,
