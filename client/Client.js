@@ -1,16 +1,16 @@
-const { Client, Collection } = require('discord.js');
+const { Client, Collection } = require("discord.js");
 
 module.exports = class extends Client {
-	constructor(config) {
-		super({
-			disableEveryone: true,
-			disabledEvents: ['TYPING_START'],
-		});
+  constructor(config) {
+    super({
+      disableEveryone: true,
+      disabledEvents: ["TYPING_START"],
+    });
 
-		this.commands = new Collection();
+    this.commands = new Collection();
 
-		this.queue = new Map();
+    this.queue = new Map();
 
-		this.config = config;
-	}
+    this.config = config;
+  }
 };
