@@ -22,6 +22,6 @@ module.exports = {
     return message.guild.members
       .ban(member)
       .then(() => message.reply(`${member.username} was banned.`))
-      .catch((error) => message.reply("Sorry, an error occured."));
+      .catch((error) => message.reply("Sorry, an error occurred."));
   },
 };
