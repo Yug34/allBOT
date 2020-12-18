@@ -8,6 +8,11 @@ const {
 
 const client = new Client();
 client.commands = new Discord.Collection();
+client.on("ready", () => {
+	// Currency.sync();
+	client.user.setActivity("over y'all", {type: "WATCHING"});
+	console.log("Bot Online.");
+});
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
