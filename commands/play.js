@@ -88,16 +88,13 @@ module.exports = {
         }
       } else {
         const songEmbed = new Discord.MessageEmbed()
-            .setColor("#00ff00")
-            .setTitle(song.title.toString().replace(/&quot;/g, '\\"'))
-            .setDescription(song.description)
-            .setURL(song.url)
-            .setAuthor(
-                song.messageAuthor,
-                song.authorPhoto
-            )
-            .setImage(song.image)
-            .setTimestamp();
+          .setColor("#00ff00")
+          .setTitle(song.title.toString().replace(/&quot;/g, '\\"'))
+          .setDescription(song.description)
+          .setURL(song.url)
+          .setAuthor(song.messageAuthor, song.authorPhoto)
+          .setImage(song.image)
+          .setTimestamp();
 
         serverQueue.songs.push(song);
         return message.channel.send(songEmbed);
@@ -124,10 +121,7 @@ module.exports = {
       .setTitle(song.title.toString().replace(/&quot;/g, '\\"'))
       .setDescription(song.description)
       .setURL(song.url)
-      .setAuthor(
-        song.messageAuthor,
-        song.authorPhoto
-      )
+      .setAuthor(song.messageAuthor, song.authorPhoto)
       .setImage(song.image)
       .setTimestamp();
 
