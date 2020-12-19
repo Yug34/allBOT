@@ -14,12 +14,18 @@ module.exports = {
     try {
       const args = message.content.split(" ");
       args.shift(); //remove the primarycommand
-      let query = "";
+      let initialQuery = "";
       args.forEach((word) => {
-        query += word.toString();
-        query += " ";
+        initialQuery += word.toString();
+        initialQuery += " ";
       });
-      query = query.slice(0, -1);
+      initialQuery = initialQuery.slice(0, -1);
+
+      let query = "";
+      for (const queryChar of initialQuery) {
+        if (queryChar === "&") break;
+        query += queryChar;
+      }
 
       let selectedVideo;
       await new Promise((resolve, reject) => {

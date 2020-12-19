@@ -10,6 +10,10 @@ const client = new Client();
 client.commands = new Discord.Collection();
 client.on("ready", () => {
 	// Currency.sync();
+	// TODO:
+	// - Make music work with youtube links
+	// - Also add Lyrics
+	// - Currency System
 	client.user.setActivity("over y'all", {type: "WATCHING"});
 	console.log("Bot Online.");
 });

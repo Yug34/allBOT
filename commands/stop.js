@@ -1,6 +1,6 @@
 module.exports = {
   name: "stop",
-  description: "Stop all songs in the queue!",
+  description: "Stop all songs in the queue and leave the channel",
   execute(message) {
     const serverQueue = message.client.queue.get(message.guild.id);
     if (!message.member.voice.channel)
