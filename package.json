@@ -20,6 +20,8 @@
     "ffmpeg": "0.0.4",
     "ffmpeg-static": "^4.2.7",
     "fluent-ffmpeg": "^2.1.2",
+    "sequelize": "^6.3.5",
+    "sqlite3": "^5.0.0",
     "xmlhttprequest": "^1.8.0",
     "youtube-search": "^1.1.4",
     "ytdl-core": "^4.1.4"

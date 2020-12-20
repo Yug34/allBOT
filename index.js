@@ -11,9 +11,9 @@ client.commands = new Discord.Collection();
 client.on("ready", () => {
 	// Currency.sync();
 	// TODO:
-	// - Make music work with youtube links
 	// - Also add Lyrics
 	// - Currency System
+	// - Image manipulation using canvas for !userinfo, their level and all
 	client.user.setActivity("over y'all", {type: "WATCHING"});
 	console.log("Bot Online.");
 });
