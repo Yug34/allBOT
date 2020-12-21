@@ -3,7 +3,7 @@ const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 module.exports = {
   name: "ud",
-  description: "Urban Dictionary!",
+  description: "Get a definition from urban dictionary!",
   execute(message) {
     let splitCommand = message.content.substr(1).split(" ");
     let arguments = splitCommand.slice(1);
