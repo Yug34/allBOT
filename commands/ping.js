@@ -1,6 +1,6 @@
 module.exports = {
     name: "ping",
-    description: "Pongs back!",
+    description: "Pong!",
     execute(message) {
         message.channel.send(`Pong! \`${Date.now() - message.createdTimestamp}ms\``);
     },
