@@ -2,12 +2,10 @@ const fs = require("fs");
 const Discord = require("discord.js");
 const Client = require("./client/Client");
 const { prefix, token } = require("./config.json");
-
 const { welcome } = require("./util/welcomeUser");
 
 // TODO:
 // - Also add Lyrics
-// - Image manipulation using canvas for !userinfo, their level and all
 
 const { Users, CurrencyShop } = require("./dbObjects");
 const currency = new Discord.Collection();
@@ -65,8 +63,6 @@ client.on("guildMemberAdd", async (member) => {
 
 
 client.on("message", async (message) => {
-  // const args = message.content.slice(prefix.length).split(/ +/);
-  // const commandName = args.shift().toLowerCase();
   if (message.content === '!join') {
     client.emit('guildMemberAdd', message.member);
     return;
