@@ -1,6 +1,6 @@
 module.exports = {
     name: "sayd",
-    description: "Say something back and delete the original message!",
+    description: "Make the bot say something  and delete the original message!",
     execute(message) {
         let splitCommand = message.content.substr(1).split(" ");
         let arguments = splitCommand.slice(1);
