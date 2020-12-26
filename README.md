@@ -2,35 +2,34 @@
 
 
 
-### Table of content
+## Table of content
 
 * [Features](#features)
 * [Requirements](#requirements)
 * [Getting started](#getting-started)
 
-### Features
+## Features
 
 - Currency and Leveling system
 - Ban / kick member
 - XKCD
 - Urban Dictionary
-- Say / sayd
-- Userinfo
+- Gyfcat
 - Play music
 - Skip songs
 - Stop music
 - Purge text messages
+- and more tiny features!
 
-### Requirements
+#### Requirements
 
 - [Node](https://nodejs.org/en/)
 - [NPM](https://www.npmjs.com/)
 - [FFMPEG](https://www.ffmpeg.org/)
-<!---
 - [Docker](https://www.docker.com/) (optional)
---->
 
-##### Installation
+
+#### Installation
 
 ```bash
 # Clone the repository
@@ -43,28 +42,28 @@ cd allBOT
 npm install
 ```
 
-##### Configuration:
+#### Configuration:
 
 After the steps above, add your Bot's secret token to config.json.
 
-##### Starting the application:
+#### Starting the application:
 
 ```bash
 node index.js
 ```
 
-<!---
-### Starting the application using Docker
+
+## Starting the application using Docker
 
 ```bash
 # Build the image
-docker build --tag discordbot .
+docker build --tag allBOT .
 
 # Run the image
-docker run -d discordbot
+docker run -d allBOT
 ```
 
-## Common errors
+#### Common errors
 
 Here is a list of common errors and how you can fix them.
 
@@ -79,5 +78,3 @@ npm install ytdl-core@latest
 #### FFMPEG is not installed on the machine running the bot
 
 The `play` command requires FFMPEG to be installed on the machine that is running the bot. You can download it on the official [FFMPEG website](https://www.ffmpeg.org/). Note: This isn't relevant if you use the Dockerfile because it will install FFMPEG inside of the container.
-
---->
