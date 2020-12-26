@@ -1,3 +1,9 @@
+# Build the image
+# docker build --tag allBOT .
+
+# Run the image
+# docker run -d allBOT
+
 FROM node:lts
 
 WORKDIR /usr/src/app
