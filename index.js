@@ -63,10 +63,11 @@ client.on("guildMemberAdd", async (member) => {
 
 
 client.on("message", async (message) => {
-  if (message.content === '!join') {
-    client.emit('guildMemberAdd', message.member);
-    return;
-  }
+  //To test welcomeUser.js:
+  // if (message.content === '!join') {
+  //   client.emit('guildMemberAdd', message.member);
+  //   return;
+  // }
 
   const input = message.content.slice(prefix.length).trim();
   if (!input.length) return;

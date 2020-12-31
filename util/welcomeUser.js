@@ -34,6 +34,9 @@ exports.welcome = async (member) => {
 
   ctx.beginPath();
   ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
+  ctx.lineWidth = 8;
+  ctx.strokeStyle = "#43b581";
+  ctx.stroke();
   ctx.closePath();
   ctx.clip();
 
