@@ -1,4 +1,5 @@
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+const gyfcat_key = require("../../config.json").gyfcat_key;
 
 module.exports = {
   name: "gif",
@@ -20,7 +21,7 @@ module.exports = {
       let query =
         "http://api.giphy.com/v1/gifs/search?q=" +
         searchStr +
-        "&api_key=QZj1IsSFSt3DTzckpKwd0H16JQcw1kPI&limit=1";
+        "&api_key=" + gyfcat_key + "&limit=1";
 
       let xhr = new XMLHttpRequest();
       xhr.open("GET", query, true);
