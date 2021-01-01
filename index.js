@@ -20,6 +20,11 @@ client.once("ready", async () => {
   console.log("Bot Online.");
 });
 
+const getDirectories = fs
+  .readdirSync("./commands", { withFileTypes: true })
+  .filter((dirent) => dirent.isDirectory())
+  .map((dirent) => dirent.name);
+
 const commandFiles = fs
   .readdirSync("./commands")
   .filter((file) => file.endsWith(".js"));
@@ -27,6 +32,16 @@ const commandFiles = fs
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
   client.commands.set(command.name, command);
+}
+
+for (const directory of getDirectories) {
+  const commandFiles = fs
+    .readdirSync(`./commands/${directory}`)
+    .filter((file) => file.endsWith(".js"));
+  for (const file of commandFiles) {
+    const command = require(`./commands/${directory}/${file}`);
+    client.commands.set(command.name, command);
+  }
 }
 
 client.once("reconnecting", () => {
@@ -60,7 +75,6 @@ Reflect.defineProperty(currency, "getBalance", {
 client.on("guildMemberAdd", async (member) => {
   await welcome(member);
 });
-
 
 client.on("message", async (message) => {
   //To test welcomeUser.js:

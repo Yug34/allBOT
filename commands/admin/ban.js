@@ -1,8 +1,8 @@
-const { getUserFromMention } = require("../util/getUser");
+const { getUserFromMention } = require("../../util/getUser");
 
 module.exports = {
   name: "ban",
-  description: "Ban a player",
+  description: "Ban a member",
   execute(message, client) {
     const split = message.content.split(/ +/);
     const args = split.slice(1);
@@ -11,7 +11,7 @@ module.exports = {
 
     if (!member) {
       return message.reply(
-        "You need to mention the member you want to ban him"
+        "You need to mention the member you want to ban"
       );
     }
 
