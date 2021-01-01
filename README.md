@@ -7,7 +7,6 @@
 * [Requirements](#requirements)
 * [Getting started](#getting-started)
 
-<br/>
 <hr/>
 
 ## Features
@@ -39,7 +38,6 @@
 
 ####And other features!
 
-<br/>
 <hr>
 
 #### Requirements
