@@ -45,9 +45,7 @@
 - [Node](https://nodejs.org/en/)
 - [NPM](https://www.npmjs.com/)
 - [FFMPEG](https://www.ffmpeg.org/)
-
-#### Or:
-- [Docker](https://www.docker.com/)
+- [Docker](https://www.docker.com/) (optional)
 
 
 #### Installation
@@ -67,6 +65,13 @@ npm install
 
 After the steps above, add your Bot's secret token to config.json.
 
+#### Currency System:
+
+```bash
+# Run dbInit.js once, and forget about it (unless you update it)
+node dbInit.js
+```
+
 #### Starting the application:
 
 ```bash
@@ -74,7 +79,7 @@ node index.js
 ```
 
 
-## Starting the application using Docker
+#### Starting the application using Docker
 
 ```bash
 # Build the image
