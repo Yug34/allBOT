@@ -1,32 +1,55 @@
 # allBOT
 
 
-
-## Table of content
+## Table of contents
 
 * [Features](#features)
 * [Requirements](#requirements)
 * [Getting started](#getting-started)
 
-## Features
+<br/>
+<hr/>
 
-- Currency and Leveling system
-- Ban / kick member
-- XKCD
+## Features
+####Admin:
+- Ban Member
+- Kick Member
+- Purge Messages
+
+####Currency:
+- Shop
+- Buy items
+- Check your Inventory
+- Leaderboard
+- Check Balance
+- Transfer money
+
+####Fun:
+- Gifs (Gyfcat API)
+- XKCD (XKCD API)
 - Urban Dictionary
-- Gyfcat
+- Kanye (Kanye.rest)
+- And other stuff!
+
+####Music:
 - Play music
 - Skip songs
 - Stop music
-- Purge text messages
-- and more tiny features!
+- View queue
+
+####And other features!
+
+<br/>
+<hr>
 
 #### Requirements
 
 - [Node](https://nodejs.org/en/)
 - [NPM](https://www.npmjs.com/)
 - [FFMPEG](https://www.ffmpeg.org/)
-- [Docker](https://www.docker.com/) (optional)
+
+####Or:
+- [Docker](https://www.docker.com/)
 
 
 #### Installation
