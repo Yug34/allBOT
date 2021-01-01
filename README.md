@@ -10,12 +10,12 @@
 <hr/>
 
 ## Features
-####Admin:
+#### Admin:
 - Ban Member
 - Kick Member
 - Purge Messages
 
-####Currency:
+#### Currency:
 - Shop
 - Buy items
 - Check your Inventory
@@ -23,20 +23,20 @@
 - Check Balance
 - Transfer money
 
-####Fun:
+#### Fun:
 - Gifs (Gyfcat API)
 - XKCD (XKCD API)
 - Urban Dictionary
 - Kanye (Kanye.rest)
 - And other stuff!
 
-####Music:
+#### Music:
 - Play music
 - Skip songs
 - Stop music
 - View queue
 
-####And other features!
+#### And other features!
 
 <hr>
 
@@ -46,7 +46,7 @@
 - [NPM](https://www.npmjs.com/)
 - [FFMPEG](https://www.ffmpeg.org/)
 
-####Or:
+#### Or:
 - [Docker](https://www.docker.com/)
 
 
