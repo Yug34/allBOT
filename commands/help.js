@@ -24,8 +24,8 @@ module.exports = {
 
     str += "#Other #commands:\n";
     const commandFiles = fs
-        .readdirSync("./commands")
-        .filter((file) => file.endsWith(".js"));
+      .readdirSync("./commands")
+      .filter((file) => file.endsWith(".js"));
 
     str += "";
     for (const file of commandFiles) {

@@ -17,15 +17,14 @@ module.exports = {
         .addField("ID", message.author.id);
 
       message.channel.send(avatarEmbed);
-    }
-    else {
+    } else {
       const user = getUserFromMention(args[0], client);
       const avatarEmbed = new Discord.MessageEmbed()
-          .setColor("#00ff00")
-          .setTitle(user.username)
-          .setImage(user.displayAvatarURL())
-          .setTimestamp()
-          .addField("ID", user.id);
+        .setColor("#00ff00")
+        .setTitle(user.username)
+        .setImage(user.displayAvatarURL())
+        .setTimestamp()
+        .addField("ID", user.id);
 
       message.channel.send(avatarEmbed);
     }

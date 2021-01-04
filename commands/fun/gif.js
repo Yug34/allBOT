@@ -21,7 +21,9 @@ module.exports = {
       let query =
         "http://api.giphy.com/v1/gifs/search?q=" +
         searchStr +
-        "&api_key=" + gyfcat_key + "&limit=1";
+        "&api_key=" +
+        gyfcat_key +
+        "&limit=1";
 
       let xhr = new XMLHttpRequest();
       xhr.open("GET", query, true);

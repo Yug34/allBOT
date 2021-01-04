@@ -10,9 +10,7 @@ module.exports = {
     const member = getUserFromMention(args[0], client);
 
     if (!member) {
-      return message.reply(
-        "You need to mention the member you want to ban"
-      );
+      return message.reply("You need to mention the member you want to ban");
     }
 
     if (!message.member.hasPermission("MANAGE_MEMBERS")) {
