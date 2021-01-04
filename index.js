@@ -44,12 +44,16 @@ for (const directory of getDirectories) {
   }
 }
 
-client.once("reconnecting", () => {
+client.on("reconnecting", () => {
   console.log("Reconnecting!");
 });
 
-client.once("disconnect", () => {
+client.on("disconnect", () => {
   console.log("Disconnect!");
+});
+
+client.on("channelCreate", (channel) => {
+  channel.send("First!");
 });
 
 Reflect.defineProperty(currency, "add", {
@@ -77,7 +81,7 @@ client.on("guildMemberAdd", async (member) => {
 });
 
 client.on("message", async (message) => {
-  //To test welcomeUser.js:
+  // To test welcomeUser.js:
   // if (message.content === '!join') {
   //   client.emit('guildMemberAdd', message.member);
   //   return;
