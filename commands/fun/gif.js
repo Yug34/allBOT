@@ -1,6 +1,13 @@
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const gyfcat_key = require("../../config.json").gyfcat_key;
 
+let gifs404 = [
+  "https://giphy.com/embed/H7wajFPnZGdRWaQeu0",
+  "https://giphy.com/embed/14uQ3cOFteDaU",
+  "https://giphy.com/embed/8L0Pky6C83SzkzU55a",
+  "https://giphy.com/embed/11gZBGuDnYwdpu",
+]
+
 module.exports = {
   name: "gif",
   description: "Sends a gif of the text arguments",
@@ -18,12 +25,7 @@ module.exports = {
       });
       searchStr.slice(0, -1);
 
-      let query =
-        "http://api.giphy.com/v1/gifs/search?q=" +
-        searchStr +
-        "&api_key=" +
-        gyfcat_key +
-        "&limit=1";
+      let query = `http://api.giphy.com/v1/gifs/search?q=${searchStr}&api_key=${gyfcat_key}&limit=1`;
 
       let xhr = new XMLHttpRequest();
       xhr.open("GET", query, true);
@@ -36,27 +38,11 @@ module.exports = {
           try {
             message.channel.send(result.data[0].embed_url);
           } catch (error) {
-            let gifs404 = [
-              "https://giphy.com/embed/H7wajFPnZGdRWaQeu0",
-              "https://giphy.com/embed/14uQ3cOFteDaU",
-              "https://giphy.com/embed/8L0Pky6C83SzkzU55a",
-              "https://giphy.com/embed/11gZBGuDnYwdpu",
-            ];
-
             let index = Math.floor(Math.random() * 4);
-
             message.channel.send(gifs404[index]);
           }
         } else {
-          let gifs404 = [
-            "https://giphy.com/embed/H7wajFPnZGdRWaQeu0",
-            "https://giphy.com/embed/14uQ3cOFteDaU",
-            "https://giphy.com/embed/8L0Pky6C83SzkzU55a",
-            "https://giphy.com/embed/11gZBGuDnYwdpu",
-          ];
-
           let index = Math.floor(Math.random() * 4);
-
           message.channel.send(gifs404[index]);
         }
       };
