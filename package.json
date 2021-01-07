@@ -1,7 +1,7 @@
 {
   "name": "music-bot",
   "version": "1.0.0",
-  "repository": "https://github.com/TannerGabriel/discord-music-bot.git",
+  "repository": "https://github.com/Yug34/allBOT.git",
   "description": "A simple discord music bot",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "music",
     "bot"
   ],
-  "author": "Gabriel Tanner",
+  "author": "Yug34",
   "license": "MIT",
   "dependencies": {
     "@discordjs/opus": "^0.3.3",
