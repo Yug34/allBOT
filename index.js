@@ -56,6 +56,10 @@ client.on("channelCreate", (channel) => {
   channel.send("First!");
 });
 
+client.on("guildMemberAdd", async (member) => {
+  await welcome(member);
+});
+
 Reflect.defineProperty(currency, "add", {
   value: async function add(id, amount) {
     const user = currency.get(id);
@@ -74,10 +78,6 @@ Reflect.defineProperty(currency, "getBalance", {
     const user = currency.get(id);
     return user ? user.balance : 0;
   },
-});
-
-client.on("guildMemberAdd", async (member) => {
-  await welcome(member);
 });
 
 client.on("message", async (message) => {
