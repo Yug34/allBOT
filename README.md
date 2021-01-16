@@ -50,7 +50,7 @@
 
 #### Installation
 
-```bash
+```shell script
 # Clone the repository
 git clone https://github.com/Yug34/allBOT
 
@@ -67,21 +67,21 @@ After the steps above, add your Bot's secret token to config.json.
 
 #### Currency System:
 
-```bash
+```shell script
 # Run dbInit.js once, and forget about it (unless you update it)
 node dbInit.js
 ```
 
 #### Starting the application:
 
-```bash
+```shell script
 node index.js
 ```
 
 
 #### Starting the application using Docker
 
-```bash
+```shell script
 # Build the image
 docker build --tag allBOT .
 
@@ -97,7 +97,7 @@ Here is a list of common errors and how you can fix them.
 
 The packages used in this repository get updated often, especially the ytdl-core package. That is why it is always worth a try updating those if you get an error like `invalid URL: undefined` or when the bot crashes when running the play command.
 
-```bash
+```shell script
 npm install ytdl-core@latest
 ```
 
