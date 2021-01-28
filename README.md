@@ -8,7 +8,6 @@
 * [Getting started](#getting-started)
 
 <hr/>
-<hr/>
 
 ## Features
 #### Admin:
