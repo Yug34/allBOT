@@ -15,11 +15,12 @@ module.exports = {
         message.channel.send(result.quote);
       } else {
         let quote = [
+          "Burn that excel spread sheet.",
           "Let's be like water.",
-          "If I don't scream, if I don't say something then no one's going to say anything.",
-          "Tweeting is legal and also therapeutic.",
+          "I channel Will Ferrell when I'm at the daddy daughter dances.",
+          "My dad got me a drone for Christmas",
           "I give up drinking every week.",
-          "I'll say things that are serious and put them in a joke form so people can enjoy them. We laugh to keep from crying.",
+          "I hate when I'm on a flight and I wake up with a water bottle next to me like oh great now I gotta be responsible for this water bottle",
         ];
 
         let index = Math.floor(Math.random() * 5);
