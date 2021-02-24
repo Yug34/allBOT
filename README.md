@@ -104,3 +104,8 @@ npm install ytdl-core@latest
 #### FFMPEG is not installed on the machine running the bot
 
 The `play` command requires FFMPEG to be installed on the machine that is running the bot. You can download it on the official [FFMPEG website](https://www.ffmpeg.org/). Note: This isn't relevant if you use the Dockerfile because it will install FFMPEG inside of the container.
+
+#### Unable to install `canvas` module
+
+If you are unable to install the `canvas` module, then there are certain dependencies you'll need to install. Refer to the [package's link](https://www.npmjs.com/package/canvas) to install those.
+
