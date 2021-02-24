@@ -2,7 +2,7 @@ const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 module.exports = {
   name: "kanye",
-  description: "I am the world's f#$%ing greatest living rockstar!",
+  description: "I am the worlds f#$%ing greatest living rockstar!",
   execute(message) {
     let query = "https://api.kanye.rest/";
     let xhr = new XMLHttpRequest();
