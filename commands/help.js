@@ -12,7 +12,7 @@ module.exports = {
       .map((dirent) => dirent.name);
 
     for (const directory of getDirectories) {
-      str += `#${directory}:\n`;
+      str += `#${directory}: {\n`;
       const commandFiles = fs
         .readdirSync(`./commands/${directory}`)
         .filter((file) => file.endsWith(".js"));
@@ -20,9 +20,10 @@ module.exports = {
         const command = require(`./${directory}/${file}`);
         str += command.name + " - " + command.description + "\n";
       }
+      str += `}\n`;
     }
 
-    str += "#Other #commands:\n";
+    str += "#Other #Commands: {\n";
     const commandFiles = fs
       .readdirSync("./commands")
       .filter((file) => file.endsWith(".js"));
@@ -32,6 +33,7 @@ module.exports = {
       const command = require(`./${file}`);
       str += command.name + " - " + command.description + "\n";
     }
+    str += `}\n`;
 
     str += "```";
 
