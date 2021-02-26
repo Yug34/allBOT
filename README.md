@@ -1,5 +1,6 @@
 # allBOT
 
+[Invite allBOT to your server](https://discord.com/oauth2/authorize?client_id=765198269068083200&permissions=8&scope=bot)
 
 ## Table of contents
 
