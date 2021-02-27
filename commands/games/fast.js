@@ -8,7 +8,7 @@ let gameRunning = false;
 class PGFast {
   constructor() {
     this.dictionary = new Typo("en_US");
-    this.totalRounds = 5;
+    this.totalRounds = 1;
     this.numRounds = 0;
   }
 
@@ -28,27 +28,32 @@ class PGFast {
     return subString;
   };
 
-  playGame(message, players) {
+  playGame(message, players, currency, users) {
     // return the winner and total score.
     if (this.numRounds >= this.totalRounds) {
       const data = [];
       let maxScore = 0;
-      let winner = null;
+      let winner = "";
 
       data.push("Game Over!");
       for (let player of Object.keys(players)) {
         if (players[player] > maxScore) {
           winner = player;
           maxScore = players[player];
-        } else if (players[player] === maxScore) winner = null;
+        } else if (players[player] === maxScore) winner = "";
 
         data.push(`${player}: ${players[player]}`);
       }
 
-      if (!winner) data.push("No one won!");
+      for (let i = 0; i < users.length; i++) {
+        if(winner !== "" && (winner === `${users[i].username}#${users[i].discriminator}`)) {
+          currency.add(users[i].id, 100);
+        }
+      }
+
+      if (winner === "") data.push("No one won!");
       else {
-        data.push(`Winner is ${winner}`);
-        //TODO: Add 100 credits to the winner's account, you will need to pass the "currency" object from index.js to the execute function
+        data.push(`${winner} won and received 100 credits!`)
       }
 
       this.numRounds = 0;
@@ -86,7 +91,7 @@ class PGFast {
 
     // start new round
     msgCollector.on("end", (collected) => {
-      this.playGame(message, players);
+      this.playGame(message, players, currency, users);
     });
   }
 }
@@ -94,7 +99,7 @@ class PGFast {
 module.exports = {
   name: "fast",
   description: "One who writes the word containing the group of three letters, wins.",
-  execute(message) {
+  execute(message, currency) {
     if (gameRunning)
       return message.channel.send("Finish the previous game first.");
     else {
@@ -119,15 +124,20 @@ module.exports = {
               }
 
               const players = {};
+              const users = [];
               cache.map((user) => {
-                if (!user.bot) players[user.tag] = 0;
+                // console.log(user);
+                if (!user.bot) {
+                  players[user.tag] = 0;
+                  users.push(user);
+                }
               });
 
               message.channel.send("Game Starts now!");
 
               // Game starts here...
               const newGame = new PGFast();
-              newGame.playGame(message, players);
+              newGame.playGame(message, players, currency, users);
             });
           });
     }

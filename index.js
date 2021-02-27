@@ -103,7 +103,7 @@ client.on("message", async (message) => {
   try {
     if (commandName === "ban" || commandName === "userinfo") {
       command.execute(message, client);
-    } else if (commandName === "balance") {
+    } else if (commandName === "balance" || commandName === "fast") {
       command.execute(message, currency);
     } else if (commandName === "inventory") {
       command.execute(message, Users);
