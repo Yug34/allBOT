@@ -47,13 +47,13 @@ class PGFast {
 
       for (let i = 0; i < users.length; i++) {
         if(winner !== "" && (winner === `${users[i].username}#${users[i].discriminator}`)) {
-          currency.add(users[i].id, 100);
+          currency.add(users[i].id, 200);
         }
       }
 
       if (winner === "") data.push("No one won!");
       else {
-        data.push(`${winner} won and received 100 credits!`)
+        data.push(`${winner} won and received 200 credits!`)
       }
 
       this.numRounds = 0;
