@@ -14,7 +14,13 @@ class PGFast {
 
   generateSubString = () => {
     let subString = "";
-    const randomWord = randomWords({ min: 5, max: 10, exactly: 1 })[0];
+
+    let randomWord = null;
+    while (true) {
+      randomWord = randomWords();
+      if (randomWord.length >= 5) break;
+    }
+
     const randomNum = Math.floor(Math.random() * randomWord.length);
     randomNum >= randomWord.length - 3
         ? (subString = randomWord.slice(randomWord.length - 3))
@@ -34,7 +40,8 @@ class PGFast {
         if (players[player] > maxScore) {
           winner = player;
           maxScore = players[player];
-        }
+        } else if (players[player] === maxScore) winner = null;
+
         data.push(`${player}: ${players[player]}`);
       }
 
