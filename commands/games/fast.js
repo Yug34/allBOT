@@ -46,10 +46,14 @@ class PGFast {
       }
 
       if (!winner) data.push("No one won!");
-      else data.push(`Winner is ${winner}`);
+      else {
+        data.push(`Winner is ${winner}`);
+        //TODO: Add 100 credits to the winner's account, you will need to pass the "currency" object from index.js to the execute function
+      }
 
       this.numRounds = 0;
       gameRunning = false;
+      
       return message.channel.send(`\`\`\`${data.join("\n")}\`\`\``);
     }
 
