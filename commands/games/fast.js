@@ -28,7 +28,7 @@ class PGFast {
     return subString;
   };
 
-  playGame(message, players, currency, users) {
+  playGame(message, players, currency) {
     // return the winner and total score.
     if (this.numRounds >= this.totalRounds) {
       const data = [];
@@ -36,26 +36,24 @@ class PGFast {
       let winner = "";
 
       data.push("Game Over!");
-      for (let player of Object.keys(players)) {
+
+      for (let player in players) {
         if (players[player] > maxScore) {
           winner = player;
           maxScore = players[player];
         } else if (players[player] === maxScore) winner = "";
 
-        data.push(`${player}: ${players[player]}`);
+        data.push(`${JSON.parse(player).username}#${JSON.parse(player).discriminator}: ${players[player]}`);
       }
-
-      for (let i = 0; i < users.length; i++) {
-        if(winner !== "" && (winner === `${users[i].username}#${users[i].discriminator}`)) {
-          currency.add(users[i].id, 200);
-        }
-      }
+      
+      // give 100 credits to the winner
+      currency.add(JSON.parse(winner).id, 100);
 
       if (winner === "") data.push("No one won!");
       else {
-        data.push(`${winner} won and received 200 credits!`)
+        data.push(`${JSON.parse(winner).username}#${JSON.parse(winner).discriminator} won and received 100 credits!`);
       }
-
+      
       this.numRounds = 0;
       gameRunning = false;
       
@@ -74,24 +72,26 @@ class PGFast {
 
     // collect players messages and check them.
     msgCollector.on("collect", (m) => {
-      const tag = `${m.author.username}#${m.author.discriminator}`;
+      m.author.lastMessageChannelID = null;
+      const player = JSON.stringify(m.author);
       const msg = m.content.toLowerCase();
+      
       if (
           !m.author.bot &&
-          Object.keys(players).includes(tag) &&
+          (player in players) &&
           !firstValidWord &&
           msg.includes(subString) &&
           this.dictionary.check(msg)
       ) {
         m.react("✅");
-        players[tag] += 1;
+        players[player] += 1;
         firstValidWord = true;
       }
     });
 
     // start new round
     msgCollector.on("end", (collected) => {
-      this.playGame(message, players, currency, users);
+      this.playGame(message, players, currency);
     });
   }
 }
@@ -124,20 +124,15 @@ module.exports = {
               }
 
               const players = {};
-              const users = [];
               cache.map((user) => {
-                // console.log(user);
-                if (!user.bot) {
-                  players[user.tag] = 0;
-                  users.push(user);
-                }
+                if (!user.bot) players[JSON.stringify(user)] = 0;
               });
 
               message.channel.send("Game Starts now!");
 
               // Game starts here...
               const newGame = new PGFast();
-              newGame.playGame(message, players, currency, users);
+              newGame.playGame(message, players, currency);
             });
           });
     }
