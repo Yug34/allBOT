@@ -8,7 +8,7 @@ let gameRunning = false;
 class PGFast {
   constructor() {
     this.dictionary = new Typo("en_US");
-    this.totalRounds = 1;
+    this.totalRounds = 5;
     this.numRounds = 0;
   }
 
