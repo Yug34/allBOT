@@ -1,6 +1,7 @@
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const gyfcat_key = require("../../config.json").gyfcat_key;
 
+// In case API doesn't work, some 404-not-found gifs!
 let gifs404 = [
   "https://giphy.com/embed/H7wajFPnZGdRWaQeu0",
   "https://giphy.com/embed/14uQ3cOFteDaU",
@@ -27,6 +28,7 @@ module.exports = {
 
       let query = `http://api.giphy.com/v1/gifs/search?q=${searchStr}&api_key=${gyfcat_key}&limit=1`;
 
+      // TODO: replace with fetch
       let xhr = new XMLHttpRequest();
       xhr.open("GET", query, true);
       xhr.send();
@@ -38,10 +40,12 @@ module.exports = {
           try {
             message.channel.send(result.data[0].embed_url);
           } catch (error) {
+            // In case of an error, send a random gif from gifs404
             let index = Math.floor(Math.random() * 4);
             message.channel.send(gifs404[index]);
           }
         } else {
+          // In case of an error, send a random gif from gifs404
           let index = Math.floor(Math.random() * 4);
           message.channel.send(gifs404[index]);
         }
