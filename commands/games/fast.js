@@ -127,12 +127,12 @@ module.exports = {
           reactionCollector.on("end", (collected) => {
             const cache = collected.map((emoji) => emoji.users.cache)[0];
 
-            // if (cache.size <= 2) {
-            //   gameRunning = false;
-            //   return message.channel.send(
-            //     "Need 2 or more players to start the game :(.",
-            //   );
-            // }
+            if (cache.size <= 2) {
+              gameRunning = false;
+              return message.channel.send(
+                "Need 2 or more players to start the game :(.",
+              );
+            }
 
             const players = {};
             cache.map((user) => {
