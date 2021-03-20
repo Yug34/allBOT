@@ -45,13 +45,16 @@ class PGFast {
 
         data.push(`${JSON.parse(player).username}#${JSON.parse(player).discriminator}: ${players[player]}`);
       }
-      
-      // give 100 credits to the winner
-      currency.add(JSON.parse(winner).id, 100);
 
       if (winner === "") data.push("No one won!");
       else {
-        data.push(`${JSON.parse(winner).username}#${JSON.parse(winner).discriminator} won and received 100 credits!`);
+        // give 100 credits to the winner 
+        currency.add(JSON.parse(winner).id, 100);
+        data.push(
+          `${JSON.parse(winner).username}#${
+            JSON.parse(winner).discriminator
+          } won and received 100 credits!`,
+        );
       }
       
       this.numRounds = 0;
