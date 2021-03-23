@@ -23,8 +23,8 @@ class PGFast {
 
     const randomNum = Math.floor(Math.random() * randomWord.length);
     randomNum >= randomWord.length - 3
-        ? (subString = randomWord.slice(randomWord.length - 3))
-        : (subString = randomWord.slice(randomNum, randomNum + 3));
+      ? (subString = randomWord.slice(randomWord.length - 3))
+      : (subString = randomWord.slice(randomNum, randomNum + 3));
     return subString;
   };
 
@@ -43,20 +43,27 @@ class PGFast {
           maxScore = players[player];
         } else if (players[player] === maxScore) winner = "";
 
-        data.push(`${JSON.parse(player).username}#${JSON.parse(player).discriminator}: ${players[player]}`);
+        data.push(
+          `${JSON.parse(player).username}#${
+            JSON.parse(player).discriminator
+          }: ${players[player]}`,
+        );
       }
-      
-      // give 100 credits to the winner
-      currency.add(JSON.parse(winner).id, 100);
 
       if (winner === "") data.push("No one won!");
       else {
-        data.push(`${JSON.parse(winner).username}#${JSON.parse(winner).discriminator} won and received 100 credits!`);
+        // give 100 credits to the winner
+        currency.add(JSON.parse(winner).id, 100);
+        data.push(
+          `${JSON.parse(winner).username}#${
+            JSON.parse(winner).discriminator
+          } won and received 100 credits!`,
+        );
       }
-      
+
       this.numRounds = 0;
       gameRunning = false;
-      
+
       return message.channel.send(`\`\`\`${data.join("\n")}\`\`\``);
     }
 
@@ -64,7 +71,8 @@ class PGFast {
     const subString = this.generateSubString();
     this.numRounds += 1;
 
-    message.channel.send(`Quickly type a word containing: \`${subString.toUpperCase()}\``
+    message.channel.send(
+      `Quickly type a word containing: \`${subString.toUpperCase()}\``,
     );
     const msgCollector = message.channel.createMessageCollector(() => true, {
       time: 10000,
@@ -75,13 +83,13 @@ class PGFast {
       m.author.lastMessageChannelID = null;
       const player = JSON.stringify(m.author);
       const msg = m.content.toLowerCase();
-      
+
       if (
-          !m.author.bot &&
-          (player in players) &&
-          !firstValidWord &&
-          msg.includes(subString) &&
-          this.dictionary.check(msg)
+        !m.author.bot &&
+        player in players &&
+        !firstValidWord &&
+        msg.includes(subString) &&
+        this.dictionary.check(msg)
       ) {
         m.react("✅");
         players[player] += 1;
@@ -98,43 +106,46 @@ class PGFast {
 
 module.exports = {
   name: "fast",
-  description: "One who writes the word containing the group of three letters, wins.",
+  description:
+    "One who writes the word containing the group of three letters, wins.",
   execute(message, currency) {
     if (gameRunning)
       return message.channel.send("Finish the previous game first.");
     else {
       gameRunning = true;
       message.channel
-          .send(
-              "```Game will start in 15 seconds. Click on the checkmark to participate. Be the fastest to write a word containing the group of 3 letters indicated.```"
-          )
-          .then((message) => {
-            message.react("✅");
-            const filter = (reaction, user) => reaction.emoji.name === "✅";
-            const reactionCollector = message.createReactionCollector(filter, {time: 15000});
-
-            reactionCollector.on("end", (collected) => {
-              const cache = collected.map((emoji) => emoji.users.cache)[0];
-
-              if (cache.size <= 2) {
-                gameRunning = false;
-                return message.channel.send(
-                    "Need 2 or more players to start the game :(."
-                );
-              }
-
-              const players = {};
-              cache.map((user) => {
-                if (!user.bot) players[JSON.stringify(user)] = 0;
-              });
-
-              message.channel.send("Game Starts now!");
-
-              // Game starts here...
-              const newGame = new PGFast();
-              newGame.playGame(message, players, currency);
-            });
+        .send(
+          "```Game will start in 15 seconds. Click on the checkmark to participate. Be the fastest to write a word containing the group of 3 letters indicated.```",
+        )
+        .then((message) => {
+          message.react("✅");
+          const filter = (reaction, user) => reaction.emoji.name === "✅";
+          const reactionCollector = message.createReactionCollector(filter, {
+            time: 15000,
           });
+
+          reactionCollector.on("end", (collected) => {
+            const cache = collected.map((emoji) => emoji.users.cache)[0];
+
+            if (cache.size <= 2) {
+              gameRunning = false;
+              return message.channel.send(
+                "Need 2 or more players to start the game :(.",
+              );
+            }
+
+            const players = {};
+            cache.map((user) => {
+              if (!user.bot) players[JSON.stringify(user)] = 0;
+            });
+
+            message.channel.send("Game Starts now!");
+
+            // Game starts here...
+            const newGame = new PGFast();
+            newGame.playGame(message, players, currency);
+          });
+        });
     }
   },
 };
