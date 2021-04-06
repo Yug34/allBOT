@@ -1,5 +1,5 @@
 {
-    "prefix": "!",
-    "token": "<Token>",
-    "gyfcat_key": "<Gyfcat API Key>"
+  "prefix": "!",
+  "token": "<Token>",
+  "gyfcat_key": "<Gyfcat API Key>"
 }
