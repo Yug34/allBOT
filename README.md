@@ -1,5 +1,7 @@
 # allBOT
 
+> The bot might not join your server/be offline since I am using heroku free tier (for now!), which limits the bots availability.
+
 [Invite allBOT to your server](https://discord.com/oauth2/authorize?client_id=765198269068083200&permissions=8&scope=bot)
 
 ## Table of contents
