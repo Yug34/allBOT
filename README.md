@@ -112,3 +112,5 @@ The `play` command requires FFMPEG to be installed on the machine that is runnin
 
 If you are unable to install the `canvas` module, then there are certain dependencies you'll need to install. Refer to the [package's link](https://www.npmjs.com/package/canvas) to install those.
 
+##### Todos:
+- Add persistent storage 
