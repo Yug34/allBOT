@@ -1,0 +1,17 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: ffmpeg-static
+    versions:
+    - 4.3.0
+  - dependency-name: discord.js
+    versions:
+    - 12.5.2
+  - dependency-name: sequelize
+    versions:
+    - 6.6.1
