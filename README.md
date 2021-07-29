@@ -48,7 +48,7 @@
 - [Node](https://nodejs.org/en/)
 - [NPM](https://www.npmjs.com/)
 - [FFMPEG](https://www.ffmpeg.org/)
-- OR - [Docker](https://www.docker.com/) (optional)
+- Or [Docker](https://www.docker.com/)
 
 
 #### Installation
