@@ -106,6 +106,7 @@ client.on("message", async (message) => {
   const input = message.content.slice(prefix.length).trim();
   if (!input.length) return;
 
+  // Discard the first value, store the next 2
   const [, commandName, commandArgs] = input.match(/(\w+)\s*([\s\S]*)/);
 
   const command = client.commands.get(commandName);
